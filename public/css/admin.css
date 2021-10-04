@@ -1,0 +1,10 @@
+.mailbox-attachment-info {
+    background-color: #f8f9fa;
+    padding: 4px;
+}
+.mailbox-attachment-size {
+    color: rgb(189, 184, 184);
+    font-size: 12px;
+    padding-right: 5px;
+
+}
