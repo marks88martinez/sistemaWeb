@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
   <title>AdminLTE 3 | Dashboard</title>
 
   <!-- Google Font: Source Sans Pro -->
@@ -26,6 +27,7 @@
   <!-- summernote -->
   <link rel="stylesheet" href="/template_admin/admin/plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="/css/admin.css">
+  
   <style>
     .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
         background-color: #1e282f;
@@ -110,6 +112,7 @@
 <script src="/template_admin/admin/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 {{-- <script src="/template_admin/admin/dist/js/pages/dashboard.js"></script> --}}
+
 @yield('scripts')
 </body>
 </html>

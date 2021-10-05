@@ -8,7 +8,7 @@ $( "#image_img" ).click(function() {
 
     $.ajax({
         type:'POST',
-        url:'/banner/bannerEliminar/'+id,
+        url:'/marca/marcaEliminar/'+id,
         success:function(data) {
             alert('funka')
             location.reload()

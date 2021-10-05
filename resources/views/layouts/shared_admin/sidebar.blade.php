@@ -3,7 +3,7 @@
     <a href="index3.html" class="brand-link">
       {{-- <img src="template_admin/admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> --}}
             <img src="/template_admin/admin/img/logo01.png" class="brand-image img-circle elevation-3" style="opacity: .8" alt="">
-      <span class="brand-text font-weight-light">Tereré<strong>Code</strong></span>
+      <span class="brand-text font-weight-light"><strong>Eden</strong></span>
     </a>
 
     <!-- Sidebar -->

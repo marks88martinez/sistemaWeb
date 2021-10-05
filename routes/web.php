@@ -8,7 +8,7 @@ use App\Http\Controllers\MarcasController;
 use App\Http\Controllers\SubcategoriasController;
 
 /*
-|--------------------------------------------------------------------------
+|-----------------------bannerEliminar---------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
@@ -30,7 +30,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('users', UsersController::class);
 Route::resource('banners', BannersController::class);
-Route::post('/banners/bannerEliminar/{id}', 'BannersController@bannerEliminar');
+// Route::post('banner/bannerEliminar', 'BannersController@bannerEliminar');
+Route::post('banner/bannerEliminar/{id}', [BannersController::class, 'bannerEliminar'])->name('banner.bannerEliminar');
+Route::post('marca/marcaEliminar/{id}', [MarcasController::class, 'marcaEliminar'])->name('marca.marcaEliminar');
+
 Route::resource('marcas', MarcasController::class);
 Route::resource('categorias', CategoriasController::class);
 Route::resource('subcategorias', SubcategoriasController::class);

@@ -78,16 +78,13 @@ class BannersController extends Controller
     }
     public function bannerEliminar($id)
     {
-        // $request = $this->request->all();
-        // $id = $request['id'];
 
         $banner = Banner::find($id);
         $banner->fill([
-            'path_image' =>'',
-         ]);
-         $banner->save();
-
-         return response()->json(['success']);
+            'path_image' => null
+        ]);
+        $banner->save();
+        return response()->json(['success']);
 
     }
 

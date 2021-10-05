@@ -36,37 +36,7 @@
                 {{method_field('put')}}
                 @csrf
 
-              <div class="card-body">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Nombre</label>
-                  <input type="text" class="form-control" name="name"  value="{{ $marca->name}}" placeholder="Nombre" required>
-                </div>
-
-                <div class="form-group">
-                  <label for="exampleInputEmail1">File</label>
-                  <input type="file" class="form-control" name="file" accept="images/*"  required>
-                  @error('file')
-                    <small class="text-danger">{{ $message }}</small>
-                  @enderror
-                </div>
-
-                {{-- <div class="form-group">
-                  <label for="exampleInputEmail1">Active</label>
-                  <div class="form-group">
-                    <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                      <input type="checkbox" class="custom-control-input" id="customSwitch3" checked>
-                      <label class="custom-control-label" for="customSwitch3"></label>
-                    </div>
-                  </div>
-                </div> --}}
-
-
-              </div>
-              <!-- /.card-body -->
-
-              <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
+              @include('marcas.form.form')
             </form>
           </div>
         </div>
@@ -76,3 +46,7 @@
     </div><!-- /.container-fluid -->
   </section>
 @endsection
+
+@section('scripts')
+  <script src="/js/marca.js"></script>
+@stop

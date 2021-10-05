@@ -74,13 +74,17 @@ class MarcasController extends Controller
         return view('marcas.edit',compact('marca'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function marcaEliminar($id)
+    {
+
+        $marca = Marca::find($id);
+        $marca->fill([
+            'path_image' => null
+        ]);
+        $marca->save();
+        return response()->json(['success']);
+
+    }
     public function update(Request $request, $id)
     {
         $marca = Marca::find($id);

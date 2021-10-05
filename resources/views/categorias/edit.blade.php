@@ -36,27 +36,7 @@
                 {{method_field('put')}}
                 @csrf
 
-              <div class="card-body">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Nombre</label>
-                  <input type="text" class="form-control" name="name" value="{{ $categoria->name }}" placeholder="Nombre" required>
-                </div>
-
-                <div class="form-group">
-                  <label for="exampleInputEmail1">File</label>
-                  <input type="file" class="form-control" name="file" accept="images/*"  required>
-                  @error('file')
-                    <small class="text-danger">{{ $message }}</small>
-                  @enderror
-                </div>
-
-
-              </div>
-              <!-- /.card-body -->
-
-              <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
+            @include('categorias.form.form')
             </form>
           </div>
         </div>
