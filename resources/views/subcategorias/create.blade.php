@@ -36,42 +36,7 @@
                 {{method_field('post')}}
                 @csrf
 
-              <div class="card-body">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Nombre</label>
-                  <input type="text" class="form-control" name="name"  placeholder="Nombre" required>
-                </div>
-
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Categorias</label>
-                  <select name="categorias_id" id="" class=" form-control">
-                    @foreach ($categorias as $cat )
-                        <option value=" {{ $cat->id }}"> {{ $cat->name }}</option>
-                    @endforeach
-                    </select>
-                </div>
-
-                @foreach ($categorias as $cat )
-                {{ $cat }}
-                 @endforeach
-
-
-
-                <div class="form-group">
-                  <label for="exampleInputEmail1">File</label>
-                  <input type="file" class="form-control" name="file" accept="images/*"  >
-                  @error('file')
-                    <small class="text-danger">{{ $message }}</small>
-                  @enderror
-                </div>
-
-
-              </div>
-              <!-- /.card-body -->
-
-              <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
+              @include('subcategorias.form.form')
             </form>
           </div>
         </div>

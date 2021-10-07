@@ -8,7 +8,7 @@ $( "#image_img" ).click(function() {
 
     $.ajax({
         type:'POST',
-        url:'/banner/bannerEliminar/'+id,
+        url:'/subcategoria/subcategoriaEliminar/'+id,
         success:function(data) {
             alert('Imagen Eliminado')
             location.reload()

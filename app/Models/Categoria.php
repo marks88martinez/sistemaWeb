@@ -20,9 +20,17 @@ class Categoria extends Model
         'categorias_id',
     ];
 
-    public function categoria(){
+    // public function categoria(){
+    //     return $this->belongsTo(Categoria::class, 'categorias_id');
+    // }
+  
+    public function children(){
+        return $this->hasMany(Categoria::class, 'categorias_id');
+    }
+    public function pather(){
         return $this->belongsTo(Categoria::class, 'categorias_id');
     }
+
 
 
 

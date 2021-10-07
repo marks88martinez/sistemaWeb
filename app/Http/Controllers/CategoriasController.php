@@ -15,8 +15,12 @@ class CategoriasController extends Controller
     }
     public function index()
     {
-        $categorias = Categoria::all();
-        return view('categorias.index',compact('categorias'));
+       
+        $categorias = Categoria::whereNull('categorias_id')
+        ->with(['children'])
+        ->get();
+       
+         return view('categorias.index',compact('categorias'));
     }
 
     /**
@@ -86,6 +90,18 @@ class CategoriasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function categoriaEliminar($id)
+    {
+
+        $categoria = Categoria::find($id);
+        $categoria->fill([
+            'path_image' => null
+        ]);
+        $categoria->save();
+        return response()->json(['success']);
+
+    }
     public function update(Request $request, $id)
     {
         $categoria = Categoria::find($id);
@@ -109,9 +125,7 @@ class CategoriasController extends Controller
         return Redirect('/categorias')->with('success','Categorias Actualizado con sucesso');
 
     }
-    public function deleteImg(Request $request, $id){
-
-    }
+   
 
     /**
      * Remove the specified resource from storage.
@@ -121,6 +135,8 @@ class CategoriasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $categoria = Categoria::find($id);
+        $categoria->delete();
+        return Redirect('/categorias')->with('success','banner delete con sucesso');
     }
 }

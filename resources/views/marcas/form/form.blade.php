@@ -7,16 +7,13 @@
 
                 <div class="form-group">
                   <label for="exampleInputEmail1">File</label>
-                  <input type="file" class="form-control" name="file" accept="images/*"  required>
+                  <input type="file" class="form-control" name="file" accept="images/*"  >
                   @error('file')
                     <small class="text-danger">{{ $message }}</small>
                   @enderror
                 </div>
 
           <div class="form-group">
-
-
-
             {{-- //////////////////// --}}
             @isset($marca->path_image)
             <div class="card-footer bg-white">
@@ -52,7 +49,7 @@
 
                 <div class="form-group">
                   <label for="exampleInputEmail1">File</label>
-                  <input type="file" class="form-control" name="file" accept="images/*"  required>
+                  <input type="file" class="form-control" name="file" accept="images/*"  >
                   @error('file')
                     <small class="text-danger">{{ $message }}</small>
                   @enderror

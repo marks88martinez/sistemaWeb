@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Categoria</h1>
+          <h1 class="m-0">SubCategoria</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -27,36 +27,15 @@
           <!-- general form elements -->
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Edit Categoria</h3>
+              <h3 class="card-title">Edit  SubCategoria</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
 
-            <form method = "POST" action= "categorias/{{ $categoria->id }}" enctype="multipart/form-data">
+            <form method = "POST" action= "/subcategorias/{{ $subcategoria->id }}" enctype="multipart/form-data">
                 {{method_field('put')}}
                 @csrf
-
-              <div class="card-body">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Nombre</label>
-                  <input type="text" class="form-control" name="name" value="{{ $categoria->name }}" placeholder="Nombre" required>
-                </div>
-
-                <div class="form-group">
-                  <label for="exampleInputEmail1">File</label>
-                  <input type="file" class="form-control" name="file" accept="images/*"  required>
-                  @error('file')
-                    <small class="text-danger">{{ $message }}</small>
-                  @enderror
-                </div>
-
-
-              </div>
-              <!-- /.card-body -->
-
-              <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
+                @include('subcategorias.form.form')
             </form>
           </div>
         </div>
@@ -66,3 +45,8 @@
     </div><!-- /.container-fluid -->
   </section>
 @endsection
+
+@section('scripts')
+  <script src="/js/subcategoria.js"></script>
+@stop
+

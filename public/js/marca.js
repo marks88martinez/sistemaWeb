@@ -10,7 +10,7 @@ $( "#image_img" ).click(function() {
         type:'POST',
         url:'/marca/marcaEliminar/'+id,
         success:function(data) {
-            alert('funka')
+            alert('Imagen Eliminado')
             location.reload()
         }
      });

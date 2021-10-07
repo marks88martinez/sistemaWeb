@@ -54,6 +54,7 @@
                   <tr>
                     <th>ID</th>
                     <th>Nome</th>
+                    <th>Categoria</th>
                     <th>image</th>
 
 
@@ -67,6 +68,7 @@
                     <tr>
                         <td>{{ $subcat->id }}</td>
                         <td>{{ $subcat->name }}</td>
+                        <td>{{ $subcat->pather->name}}</td>
                         <td>
                             @if ( $subcat->path_image)
                                 <img src="{{ $subcat->path_image }}" alt="{{ $subcat->name }}" style="width: 80px"></td>

@@ -5,12 +5,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Categoria</h1>
+          <h1 class="m-0"> productos</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item">
-            <a href="/categorias/create" type="button" class="btn btn bg-gradient-primary btn-sm float-right p-2 m-2"><i class="fa fa-user"></i>  New Categoria</a>
+            <a href="/productos/create" type="button" class="btn btn bg-gradient-primary btn-sm float-right p-2 m-2"><i class="fa fa-user"></i>  New producto</a>
            </li>
 
           </ol>
@@ -27,16 +27,19 @@
           <!-- general form elements -->
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Edit Categoria</h3>
+              <h3 class="card-title">Create producto</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
 
-            <form method = "POST" action= "/categorias/{{ $categoria->id }}" enctype="multipart/form-data">
-                {{method_field('put')}}
+            <form method = "POST" action= "{{ route('productos.store') }}" enctype="multipart/form-data">
+                {{method_field('post')}}
                 @csrf
+                @include('productos.form.form')
+             
+              <!-- /.card-body -->
 
-            @include('categorias.form.form')
+              
             </form>
           </div>
         </div>
@@ -46,7 +49,8 @@
     </div><!-- /.container-fluid -->
   </section>
 @endsection
-@section('scripts')
-  <script src="/js/categoria.js"></script>
-@stop
 
+@section('scripts')
+  <script src="/js/productoCategoria.js"></script>
+
+@stop
