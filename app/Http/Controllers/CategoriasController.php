@@ -19,6 +19,7 @@ class CategoriasController extends Controller
         $categorias = Categoria::whereNull('categorias_id')
         ->with(['children'])
         ->get();
+        dd( $categorias);
        
          return view('categorias.index',compact('categorias'));
     }

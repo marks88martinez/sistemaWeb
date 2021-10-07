@@ -16,7 +16,8 @@ class ProductoController extends Controller
     }
     public function index()
     {
-        $categorias = Categoria::whereNull('categorias_id')->get();
+        // $categorias = Categoria::whereNull('categorias_id')->get();
+        $categorias = Categoria::all();
         $productos = Producto::all();
         return view('productos.index',compact('productos','categorias'));
     }
@@ -41,7 +42,7 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->categorias_id);
+        // dd($request);
 
         // $request->validate([
         //     'file'=>'required|image|max:2048'
@@ -56,13 +57,19 @@ class ProductoController extends Controller
             'precio'=> $request->precio,
             'precio_oferta'=> $request->precio_oferta,
             'codigo_prod'=> $request->codigo_prod,
-            'destacado'=> $request->destacado,
-            'status'=> $request->status
+            // 'destacado'=> $request->destacado,
+            // 'status'=> $request->status
           
         ]);
 
      
         foreach ($request->categorias_id as $cat) {
+            ProductoCategoria::create([
+                'producto_id'=> $producto->id,
+                'categoria_id'=> $cat,
+            ]);
+        }
+        foreach ($request->Subcategorias_id as $cat) {
             ProductoCategoria::create([
                 'producto_id'=> $producto->id,
                 'categoria_id'=> $cat,
@@ -94,7 +101,14 @@ class ProductoController extends Controller
     public function edit($id)
     {
         $producto = Producto::find($id);
-        return view('productos.edit',compact('producto'));
+
+        $subcategorias = Categoria::WhereNotNull('categorias_id')->get();
+        $categorias = Categoria::whereNull('categorias_id')->get();
+        $prodcat =  Producto::where('id','=',$id)->with(['categorias'])
+        ->get();
+
+        // return $prodcat;
+        return view('productos.edit',compact('producto','categorias','subcategorias','prodcat'));
     }
 
     public function roductoEliminar($id)

@@ -19,9 +19,13 @@ class ProductoCategoria extends Model
     // public function productos(){
     //     return $this->hasMany(Producto::class);
     // }
-    // public function productoImagenes(){
-    //     return $this->hasMany(ProductoImagenes::class);
+    // public function categoria(){
+    //     return $this->belongsTo(Categoria::class,'categoria_id');
+    // }
+    // public function productos(){
+    //     return $this->belongsToMany(Producto::class);
     // }
    
+  
 
 }

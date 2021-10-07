@@ -25,6 +25,19 @@ class Producto extends Model
         'status',
     ];
 
+    // public function categorias(){
+    //     return $this->belongsToMany(Categoria::class);
+    // }
+
+  
+    public function categorias()
+    {
+        return $this->belongsToMany('App\Models\Categoria', 'producto_categoria', 'producto_id', 'categoria_id');
+    }
+
+    
+
+
     
 
     // public function productoImagen(): BelongsToMany
