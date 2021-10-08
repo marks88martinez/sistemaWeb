@@ -19,10 +19,12 @@
                            <!-- ////////////////////////// -->
 
                           <label for="exampleInputEmail1">Categoria</label>
+                          
                               <ul class="tree">
-                              @foreach ($categorias as $cat )
+                              @foreach ($categorias as $cat )   
+                           
                               <li class="has">
-                                <input type="checkbox" name="categorias_id[]" value="{{ $cat->id }} ">
+                                <input type="checkbox" name="categorias_id[]" value="{{ $cat->id }}" style="" >
                                 <label>{{ $cat->name }}  <span class="total">({{$cat->children->count()}})</span></label>
                                 <ul>
                                   @foreach ($cat->children as $cat )
@@ -34,31 +36,23 @@
                                     @endforeach
                                 </ul>
                               </li>
+                          
                               @endforeach
                             
                             </ul>
                       
                         <!-- ////////////////////////// -->
-                       
-                        @foreach ($prodcat as $cat )
-                            
-                        @foreach ($cat->categorias as $cat )
-                            
-                          ####  {{$cat->name}}
-                       
-                           @endforeach
-                           
-                        @endforeach
+                   
 
                     </div> 
 
                   </div>
                   <div class="col-sm-3">
                       <div class="form-group">
-                      <label for="exampleInputEmail1">Destacado</label>
+                      <label for="exampleInputEmail1">Destacado </label>
                       <div class="form-group">
                         <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                          <input type="checkbox" class="custom-control-input"  name="destacado" id="destacado" checked>
+                          <input type="checkbox" class="custom-control-input"  name="destacado" id="destacado" value="0"  {{ $producto->destacado === 'Active' ? 'checked':'' }}  >
                           <label class="custom-control-label" for="destacado"></label>
                         </div>
                       </div>
@@ -70,7 +64,7 @@
                       <label for="exampleInputEmail1">status</label>
                       <div class="form-group">
                         <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                          <input type="checkbox" class="custom-control-input"  name="status" id="status" checked>
+                          <input type="checkbox" class="custom-control-input"  name="status" id="status" value="0"  {{ $producto->status === 'Active' ? 'checked':'' }} >
                           <label class="custom-control-label" for="status"></label>
                         </div>
                       </div>
@@ -167,7 +161,7 @@
                       <label for="exampleInputEmail1">Destacado</label>
                       <div class="form-group">
                         <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                          <input type="checkbox" class="custom-control-input"  name="destacado" id="destacado" checked>
+                          <input type="checkbox" class="custom-control-input"  name="destacado" id="destacado" value="0">
                           <label class="custom-control-label" for="destacado"></label>
                         </div>
                       </div>
@@ -179,7 +173,7 @@
                       <label for="exampleInputEmail1">status</label>
                       <div class="form-group">
                         <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                          <input type="checkbox" class="custom-control-input"  name="status" id="status" checked>
+                          <input type="checkbox" class="custom-control-input"  name="status" id="status" value="1">
                           <label class="custom-control-label" for="status"></label>
                         </div>
                       </div>

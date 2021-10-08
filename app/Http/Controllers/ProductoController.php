@@ -8,6 +8,7 @@ use App\Models\Categoria;
 use App\Models\ProductoCategoria;
 
 
+
 class ProductoController extends Controller
 {
     public function __construct()
@@ -42,8 +43,8 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-
+      
+        // dd( $request->input('destacado') ? 'Active' : 'Inactive');
         // $request->validate([
         //     'file'=>'required|image|max:2048'
         // ]);
@@ -57,8 +58,8 @@ class ProductoController extends Controller
             'precio'=> $request->precio,
             'precio_oferta'=> $request->precio_oferta,
             'codigo_prod'=> $request->codigo_prod,
-            // 'destacado'=> $request->destacado,
-            // 'status'=> $request->status
+            'destacado'=> $request->input('destacado') ? 'Active': 'Inactive',
+            'status'=> $request->input('status') ? 'Active' : 'Inactive'
           
         ]);
 
@@ -69,12 +70,15 @@ class ProductoController extends Controller
                 'categoria_id'=> $cat,
             ]);
         }
-        foreach ($request->Subcategorias_id as $cat) {
-            ProductoCategoria::create([
-                'producto_id'=> $producto->id,
-                'categoria_id'=> $cat,
-            ]);
+        if ($request->Subcategorias_id) {
+            foreach ($request->Subcategorias_id as $cat) {
+                ProductoCategoria::create([
+                    'producto_id'=> $producto->id,
+                    'categoria_id'=> $cat,
+                ]);
+            }
         }
+       
  
         
         return redirect('productos');
@@ -104,11 +108,15 @@ class ProductoController extends Controller
 
         $subcategorias = Categoria::WhereNotNull('categorias_id')->get();
         $categorias = Categoria::whereNull('categorias_id')->get();
-        $prodcat =  Producto::where('id','=',$id)->with(['categorias'])
+        $prodcat =  Categoria::rightJoin('producto_categoria','categorias.id','producto_categoria.categoria_id')
+        ->join('productos','productos.id','producto_categoria.producto_id')
+        ->where('productos.id',$id)
         ->get();
+        // $prodcat =  Producto::where('id','=',$id)->with(['categorias'])
+        // ->get();
 
-        // return $prodcat;
-        return view('productos.edit',compact('producto','categorias','subcategorias','prodcat'));
+        return $prodcat;
+        // return view('productos.edit',compact('producto','categorias','subcategorias','prodcat'));
     }
 
     public function roductoEliminar($id)
