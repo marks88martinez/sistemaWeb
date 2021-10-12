@@ -62,8 +62,8 @@ class ProductoController extends Controller
             'precio'=> $request->precio,
             'precio_oferta'=> $request->precio_oferta,
             'sku'=> $request->codigo_prod,
-            'destacado'=> $request->input('destacado') ? 'Active': 'Inactive',
-            'status'=> $request->input('status') ? 'Active' : 'Inactive'
+            'destacado'=> $request->input('destacado') ==  0 ? 'Active': 'Inactive',
+            'status'=> $request->input('status') ==  0 ? 'Active' : 'Inactive'
 
         ]);
 
@@ -186,20 +186,36 @@ class ProductoController extends Controller
 
         ]);
 
+
+
+
         if ($request->file) {
-            $request->validate([
-                    'file'=>'image|max:2048'
-            ]);
-                //php artisan storage:link   /// crea acceso directo a la carpeta public de las imagenes a storage
-              $imagenes = $request->file('file')->store('public/productos');
-              $url = Storage::url($imagenes);
-              $producto->fill([
-                'path_image' => $url
-          ]);
+            $images = $request->file('file');
+
+            foreach ($images as $f) {
+
+                $name = $f->store('public/productos');
+
+                $url =  Storage::url($name);
+
+
+                   $producto_Imagenes =  ProductoImagenes::create([
+                        'path_image'=> $url,
+                    ]);
+                   ProductoImagen::create([
+                        'producto_id'=> $producto->id,
+                        'imagen_id'=> $producto_Imagenes->id,
+                    ]);
+            }
 
         }
+
+
+
+
         $producto->save();
-        return Redirect('/productos')->with('success','Producto Actualizado con sucesso');
+        // return Redirect('/productos')->with('success','Producto Actualizado con sucesso');
+        return back();
     }
 
 

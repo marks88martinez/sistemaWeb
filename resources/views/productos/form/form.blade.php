@@ -1,7 +1,7 @@
 @isset($producto)
 <div class="card-body">
   <div class="row">
-    <div class="col-sm-6">
+            <div class="col-sm-6">
                <div class="form-group">
                   <label for="exampleInputEmail1">Nombre</label>
                   <input type="text" class="form-control" name="name" value="{{ $producto->name }}"   required>
@@ -81,8 +81,8 @@
 
 
 
-              </div>
-              <div class="col-sm-6">
+            </div>
+            <div class="col-sm-6">
 
 
                 <div class="form-group">
@@ -97,9 +97,58 @@
                   <label for="exampleInputEmail1">Codigo Producto</label>
                   <input type="text" class="form-control" name="codigo_prod" value="{{ $producto->codigo_prod }}"  placeholder="Codigo Producto" >
                 </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">File</label>
+                    <input type="file" id="file" class="form-control" name="file[]" accept=' images/*' multiple=true >
+            </div>
+
+                {{-- //////////////////// --}}
+                <div class="row">
+                    <div class="col-12">
+                      <div class="card">
+                        <div class="card-header">
+                          <h3 class="card-title">Photos</h3>
+
+
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0" style="height: 300px;">
+                          <table class="table table-head-fixed text-nowrap">
+                            <thead>
+                              <tr>
+                                <th>#</th>
+                                <th>Photo</th>
+
+                              </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($producto->productoImagenes as $prod )
+                                <tr>
+
+                                  <td>
+                                      <img src=" {{ $prod->path_image }}"  style="width: 80px">
+
+                                  </td>
+                                  <td>
+                                      <a href="/productos/{{ $prod->id }}/edit" class="btn btn bg-gradient-danger btn-sm"> <i class="fa fa-bell"></i>Delete</a>
+                                  </td>
+
+                                </tr>
+                              @endforeach
+
+                            </tbody>
+                          </table>
+                        </div>
+                        <!-- /.card-body -->
+                      </div>
+                      <!-- /.card -->
+                    </div>
+                  </div>
+                {{-- //////////////////// --}}
 
              </div>
     </div>
+
   </div>
 
 @else
