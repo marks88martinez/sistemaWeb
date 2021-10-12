@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Categoria;
 use App\Models\ProductoCategoria;
+use App\Models\ProductoImagen;
+use App\Models\ProductoImagenes;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 
 
@@ -15,12 +19,21 @@ class ProductoController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
+    public function index(Request $request)
     {
-        // $categorias = Categoria::whereNull('categorias_id')->get();
-        $categorias = Categoria::all();
-        $productos = Producto::all();
-        return view('productos.index',compact('productos','categorias'));
+        $search =  $request->input('search');
+
+        if ( $request->search) {
+            $categorias = Categoria::all();
+            $productos = Producto::where('name','like','%'.$search.'%')->paginate(20);
+        }else{
+               // $categorias = Categoria::whereNull('categorias_id')->get();
+            $categorias = Categoria::all();
+            $productos = Producto::paginate(20);
+        }
+    return view('productos.index',compact('productos','categorias'));
+
+
     }
 
     /**
@@ -35,35 +48,26 @@ class ProductoController extends Controller
         return view('productos.create', compact('categorias','subcategorias'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-      
-        // dd( $request->input('destacado') ? 'Active' : 'Inactive');
-        // $request->validate([
-        //     'file'=>'required|image|max:2048'
-        // ]);
-        // //php artisan storage:link   /// crea acceso directo a la carpeta public de las imagenes a storage
+        // return $request->file('file');
+        //  dd($request);
 
-        // $imagenes = $request->file('file')->store('public/productos');
-        // $url = Storage::url($imagenes);
+        $now = now();
         $producto =  Producto::create([
             'name'=> $request->name,
             'description'=> $request->description,
+            'slug'=> Str::slug($request->name,'-').'_'.rand(),
             'precio'=> $request->precio,
             'precio_oferta'=> $request->precio_oferta,
-            'codigo_prod'=> $request->codigo_prod,
+            'sku'=> $request->codigo_prod,
             'destacado'=> $request->input('destacado') ? 'Active': 'Inactive',
             'status'=> $request->input('status') ? 'Active' : 'Inactive'
-          
+
         ]);
 
-     
+            // ## Producto Categorias TB
         foreach ($request->categorias_id as $cat) {
             ProductoCategoria::create([
                 'producto_id'=> $producto->id,
@@ -78,9 +82,35 @@ class ProductoController extends Controller
                 ]);
             }
         }
-       
- 
-        
+        // ## Productos Imagenes TB
+
+        $imagenes = '';
+        // $paths = [];
+        // $request->validate([
+        //     'file'=>'image|max:2048'
+        // ]);
+
+        if ($request->file) {
+            $images = $request->file('file');
+
+            foreach ($images as $f) {
+
+                $name = $f->store('public/productos');
+                    // $store= Storage::url($name);
+                    // array_push($paths, $store);
+                $url =  Storage::url($name);
+                   $producto_Imagenes =  ProductoImagenes::create([
+                        'path_image'=> $url,
+                    ]);
+                   ProductoImagen::create([
+                        'producto_id'=> $producto->id,
+                        'imagen_id'=> $producto_Imagenes->id,
+                    ]);
+            }
+
+        }
+
+
         return redirect('productos');
 
     }
@@ -91,9 +121,10 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $post = Producto::where('slug','=', $slug)->firstOrFail();
+        return $post;
     }
 
     /**
@@ -107,19 +138,26 @@ class ProductoController extends Controller
         $producto = Producto::find($id);
 
         $subcategorias = Categoria::WhereNotNull('categorias_id')->get();
-        $categorias = Categoria::whereNull('categorias_id')->get();
-        $prodcat =  Categoria::rightJoin('producto_categoria','categorias.id','producto_categoria.categoria_id')
-        ->join('productos','productos.id','producto_categoria.producto_id')
+         $categorias = Categoria::whereNull('categorias_id')->with(['children'])->get();
+        $proCat =  Categoria::rightJoin('producto_categoria','categorias.id','producto_categoria.categoria_id')
+        // ->select('categorias.name','categorias.id')
+        ->rightJoin('productos','productos.id','producto_categoria.producto_id')
         ->where('productos.id',$id)
-        ->get();
+        ->pluck('categorias.id')
+        ->toArray();
+
+        // ->get();
         // $prodcat =  Producto::where('id','=',$id)->with(['categorias'])
         // ->get();
+        // $proCat =  Producto::with(['categorias'])
+        // ->where('id',$id)
+        // ->first();
 
-        return $prodcat;
-        // return view('productos.edit',compact('producto','categorias','subcategorias','prodcat'));
+        // return $proCat;
+       return view('productos.edit',compact('producto','categorias','subcategorias','proCat'));
     }
 
-    public function roductoEliminar($id)
+    public function productoEliminar($id)
     {
 
         $producto = Producto::find($id);
@@ -132,9 +170,20 @@ class ProductoController extends Controller
     }
     public function update(Request $request, $id)
     {
+        // dd($request->status);
         $producto = Producto::find($id);
         $producto->fill([
-              'name' => $request->name
+
+              'name'=> $request->name,
+              'description'=> $request->description,
+            //   'slug'=> Str::slug($request->name,'-').'_'.rand(),
+              'precio'=> $request->precio,
+              'precio_oferta'=> $request->precio_oferta,
+              'sku'=> $request->codigo_prod,
+
+              'destacado'=> $request->input('destacado') ==  0 ? 'Active': 'Inactive',
+              'status'=> $request->input('status') == 0 ? 'Active' : 'Inactive'
+
         ]);
 
         if ($request->file) {
@@ -153,7 +202,7 @@ class ProductoController extends Controller
         return Redirect('/productos')->with('success','Producto Actualizado con sucesso');
     }
 
-   
+
     public function destroy($id)
     {
         $producto = Producto::find($id);

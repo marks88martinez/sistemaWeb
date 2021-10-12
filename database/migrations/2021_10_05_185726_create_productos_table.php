@@ -17,10 +17,10 @@ class CreateProductosTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->text('description')->nullable();
-            $table->string('slug')->nullable();
+            $table->string('slug')->nullable()->unique();
             $table->string('precio')->nullable();
             $table->string('precio_oferta')->nullable();
-            $table->string('codigo_prod')->nullable();
+            $table->string('sku')->nullable();
             $table->enum('destacado', [ 'Active','Inactive'])->default('Active');
             $table->enum('status', [ 'Active','Inactive'])->default('Active');
             $table->softDeletes();

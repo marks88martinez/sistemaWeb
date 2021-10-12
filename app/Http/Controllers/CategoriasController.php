@@ -15,31 +15,22 @@ class CategoriasController extends Controller
     }
     public function index()
     {
-       
+
         $categorias = Categoria::whereNull('categorias_id')
         ->with(['children'])
         ->get();
-        dd( $categorias);
-       
+
+
          return view('categorias.index',compact('categorias'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         return view('categorias.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $imagenes = '';
@@ -50,6 +41,7 @@ class CategoriasController extends Controller
             ]);
             //php artisan storage:link   /// crea acceso directo a la carpeta public de las imagenes a storage
             $imagenes = $request->file('file')->store('public/categorias');
+            // return $imagenes;
         }
         $url = $imagenes ? Storage::url($imagenes) : '' ;
         Categoria::create([
@@ -126,7 +118,7 @@ class CategoriasController extends Controller
         return Redirect('/categorias')->with('success','Categorias Actualizado con sucesso');
 
     }
-   
+
 
     /**
      * Remove the specified resource from storage.

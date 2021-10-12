@@ -27,17 +27,18 @@
   <!-- summernote -->
   <link rel="stylesheet" href="/template_admin/admin/plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="/css/admin.css">
+  <link rel="stylesheet" href="/css/dropzone.css">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
   <style>
 
 * {
-  padding: 0px;
-  margin: 0px;
+  /* padding: 0px; */
+  /* margin: 0px; */
   outline: none;
-  font: 16px "Calibri";
-  font-weight: lighter;
+  /* font: 16px "Calibri"; */
+  /* font-weight: lighter; */
   list-style-type: none;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -58,12 +59,12 @@
 }
 
 button {
-  border: 0px;
+  /* border: 0px;
   color: #e13300;
   margin: 4px;
   padding: 4px 12px;
   cursor: pointer;
-  background: transparent;
+  background: transparent; */
 }
 
 button.active,
@@ -81,30 +82,30 @@ input[type=checkbox] {
 }
 
 h1 {
-  font-size: 3em;
+  /* font-size: 3em;
   font-weight: lighter;
   color: #fff;
   text-align: center;
   display: block;
   padding: 40px 0px;
-  margin-top: 40px;
+  margin-top: 40px; */
 }
 
 .tree {
-  margin: 2% auto;
-  width: 80%;
+  margin: 1% auto;
+  /* width: 80%; */
 }
 
 .tree ul {
   display: none;
-  margin: 4px auto;
+  margin: 2px auto;
   margin-left: 6px;
   border-left: 1px dashed #dfdfdf;
 }
 
 
 .tree li {
-  padding: 12px 18px;
+  /* padding: 1px; */
   cursor: pointer;
   vertical-align: middle;
   background: #fff;
@@ -139,9 +140,9 @@ h1 {
   color: #e13300;
 }
   </style>
-  
-  
-  
+
+
+
   <style>
     .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
         background-color: #1e282f;
@@ -227,6 +228,7 @@ h1 {
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 {{-- <script src="/template_admin/admin/dist/js/pages/dashboard.js"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js" integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/js/dropzone.js"></script>
 
 @yield('scripts')
 
@@ -237,7 +239,7 @@ $(document).on('click', '.tree label', function(e) {
 });
 
 $(document).on('change', '.tree input[type=checkbox]', function(e) {
-  
+
   $(this).siblings('ul').find("input[type='checkbox']").prop('checked', this.checked);
   $(this).parentsUntil('.tree').children("input[type='checkbox']").prop('checked', this.checked);
   e.stopPropagation();
@@ -261,6 +263,7 @@ $(document).on('click', 'button', function(e) {
   }
 });
 </script>
+
 
 
 

@@ -27,9 +27,9 @@
                     <div class="mailbox-attachment-info" >
                           <span class="mailbox-attachment-size clearfix ">
                             <small  id="image_img" class="btn btn-default btn-sm float-right"><i class="far fa-trash-alt"></i></small>
-                      
+
                             <input type="hidden"  id="image_id" value="{{ $marca->id }}">
-                          
+
                         </span>
                     </div>
                   </li>
@@ -49,7 +49,7 @@
 
                 <div class="form-group">
                   <label for="exampleInputEmail1">File</label>
-                  <input type="file" class="form-control" name="file" accept="images/*"  >
+                  <input type="file" class="form-control" name="file" accept="images/*"  multiple >
                   @error('file')
                     <small class="text-danger">{{ $message }}</small>
                   @enderror
@@ -69,7 +69,7 @@
               </div>
 @endisset
 
-      
+
               <!-- /.card-body -->
 
               <div class="card-footer">

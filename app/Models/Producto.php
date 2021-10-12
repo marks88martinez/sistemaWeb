@@ -29,16 +29,34 @@ class Producto extends Model
     //     return $this->belongsToMany(Categoria::class);
     // }
 
-  
+
     public function categorias()
     {
         return $this->belongsToMany('App\Models\Categoria', 'producto_categoria', 'producto_id', 'categoria_id');
     }
 
-    
+    public function productoImagenes()
+    {
+        return $this->belongsToMany('App\Models\ProductoImagenes', 'producto_imagen', 'producto_id', 'imagen_id');
+    }
+    public function productoImagen()
+    {
+        return $this->productoImagenes()->take(1);
+
+    }
 
 
-    
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+
+
+
+
+
 
     // public function productoImagen(): BelongsToMany
     // {

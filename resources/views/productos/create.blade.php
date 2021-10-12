@@ -32,14 +32,14 @@
             <!-- /.card-header -->
             <!-- form start -->
 
-            <form method = "POST" action= "{{ route('productos.store') }}" enctype="multipart/form-data">
+            <form method = "POST" action= "{{ route('productos.store') }}" enctype="multipart/form-data" >
                 {{method_field('post')}}
                 @csrf
                 @include('productos.form.form')
-             
+
               <!-- /.card-body -->
 
-              
+
             </form>
           </div>
         </div>
@@ -52,5 +52,35 @@
 
 @section('scripts')
   <script src="/js/productoCategoria.js"></script>
+  <script>
+    Dropzone.options.myDropzone = {
+        url: "/fake/location",
+        autoProcessQueue: false,
+        uploadMultiple: true,
+        paramName: "file",
+        clickable: true,
+        maxFilesize: 5, //in mb
+        addRemoveLinks: true,
+        dictRemoveFile: 'Remover --',
+        acceptedFiles: '.png,.jpg',
+        dictDefaultMessage: "Upload your file here",
+
+        init: function() {
+          this.on("sending", function(file, xhr, formData) {
+            console.log("sending file");
+          });
+          this.on("success", function(file, responseText) {
+            console.log('great success');
+          });
+          this.on("addedfile", function(file){
+                console.log('file added'+file.name);
+
+
+
+            });
+        }
+      };
+  </script>
+
 
 @stop
