@@ -48,5 +48,5 @@
 @endsection
 
 @section('scripts')
-  <script src="/js/producto.js"></script>
+  <script src="/js/productos.js"></script>
 @stop

@@ -42,4 +42,5 @@ Route::resource('marcas', MarcasController::class);
 Route::resource('categorias', CategoriasController::class);
 Route::resource('subcategorias', SubcategoriasController::class);
 Route::resource('productos', ProductoController::class);
-
+Route::post('producto/imageEliminar/{id}', [ProductoController::class, 'imageEliminar'])->name('producto.imageEliminar');
+Route::post('producto/imagenTable/{id}', [ProductoController::class, 'imagenTable'])->name('producto.imagenTable');

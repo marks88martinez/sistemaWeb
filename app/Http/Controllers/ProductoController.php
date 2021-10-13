@@ -51,8 +51,8 @@ class ProductoController extends Controller
 
     public function store(Request $request)
     {
-        // return $request->file('file');
-        //  dd($request);
+        // return $request->file('files');
+         dd($request);
 
         $now = now();
         $producto =  Producto::create([
@@ -156,16 +156,25 @@ class ProductoController extends Controller
         // return $proCat;
        return view('productos.edit',compact('producto','categorias','subcategorias','proCat'));
     }
+    public function imagenTable($id)
+    {
+      $productos = Producto::find($id);
 
-    public function productoEliminar($id)
+      $productoPhotos = $productos->productoImagenes;
+      return response()->json(compact('productoPhotos'));
+    }
+    public function imageEliminar($id)
     {
 
-        $producto = Producto::find($id);
-        $producto->fill([
-            'path_image' => null
-        ]);
-        $producto->save();
-        return response()->json(['success']);
+        $idProducto = productoImagen::select('producto_id')->where('imagen_id',$id)->first()->toArray();
+        $imagen = productoImagenes::find($id);
+        $imagen->delete();
+        return $idProducto;
+
+        // $productoImagen = productoImagen::where('image_id',$id)->get();
+        // $productoImagen->destroy();
+
+        return response()->json(compact('idProducto'));
 
     }
     public function update(Request $request, $id)
@@ -181,8 +190,8 @@ class ProductoController extends Controller
               'precio_oferta'=> $request->precio_oferta,
               'sku'=> $request->codigo_prod,
 
-              'destacado'=> $request->input('destacado') ==  0 ? 'Active': 'Inactive',
-              'status'=> $request->input('status') == 0 ? 'Active' : 'Inactive'
+              'destacado'=> $request->has('destacado')  ? 'Active': 'Inactive',
+              'status'=> $request->has('status') ? 'Active' : 'Inactive'
 
         ]);
 

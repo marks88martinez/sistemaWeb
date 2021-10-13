@@ -27,7 +27,9 @@
   <!-- summernote -->
   <link rel="stylesheet" href="/template_admin/admin/plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="/css/admin.css">
-  <link rel="stylesheet" href="/css/dropzone.css">
+    <!-- Format Images loader CSS -->
+    <link rel="stylesheet" href="/template_admin/imageloader/css/jquery.imagesloader.css">
+
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
@@ -228,7 +230,10 @@ h1 {
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 {{-- <script src="/template_admin/admin/dist/js/pages/dashboard.js"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js" integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="/js/dropzone.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Images loader -->
+<script src="/template_admin/imageloader/js/jquery.imagesloader-1.0.1.js"></script>
+
 
 @yield('scripts')
 
@@ -239,9 +244,10 @@ $(document).on('click', '.tree label', function(e) {
 });
 
 $(document).on('change', '.tree input[type=checkbox]', function(e) {
+  // console.log(e);
 
   $(this).siblings('ul').find("input[type='checkbox']").prop('checked', this.checked);
-  $(this).parentsUntil('.tree').children("input[type='checkbox']").prop('checked', this.checked);
+  // $(this).parentsUntil('.tree').children("input[type='checkbox']").prop('checked', this.checked);
   e.stopPropagation();
 });
 
