@@ -111,7 +111,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon far fa-plus-square"></i>
+              <i class="nav-icon fas fa-folder"></i>
               <p>
                 Categorias
                 <i class="right fas fa-angle-left"></i>
@@ -129,7 +129,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon far fa-plus-square"></i>
+              <i class="nav-icon far fa-folder-open"></i>
               <p>
                 SubCategorias
                 <i class="right fas fa-angle-left"></i>
@@ -147,7 +147,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon far fa-plus-square"></i>
+              <i class="nav-icon fas fa-store"></i>
               <p>
                 Productos
                 <i class="right fas fa-angle-left"></i>
@@ -163,7 +163,7 @@
 
             </ul>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-plus-square"></i>
               <p>
@@ -198,12 +198,12 @@
               </li>
 
             </ul>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon far fa-plus-square"></i>
+            <i class="fas fa-cogs nav-icon"></i> 
               <p>
-                Configuracion
+                 Setup
 
               </p>
             </a>

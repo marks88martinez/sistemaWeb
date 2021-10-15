@@ -825,7 +825,17 @@ function drawRotated(img,degree) {
       var $element = $(element);
       var options = self.options;
       var retVal = true;
-      console.log('AttachmentArray',self.AttachmentArray);
+      // $('#file').val(self.AttachmentArray);
+      // fil =  document.getElementById("files");
+      // console.log('AttachmentArray',element);
+      // val = []
+      // for (var i = 0; i < self.AttachmentArray.length; i++){
+      //   val = self.AttachmentArray[i].FileName;
+      //   console.log('attachment: ', val );
+       
+      //  }
+      // alert('okaoskdoaksodka');
+      
 
       if (self.AttachmentArray.length < options.minSelect) {
 

@@ -28,8 +28,11 @@
   <link rel="stylesheet" href="/template_admin/admin/plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="/css/admin.css">
     <!-- Format Images loader CSS -->
-    <link rel="stylesheet" href="/template_admin/imageloader/css/jquery.imagesloader.css">
-
+  <!--Material Design Iconic Font-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <!-- Image Uploader CSS -->
+  <link rel="stylesheet" href="/template_admin/imageloader/css/image-uploader.min.css">
+  <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
@@ -231,9 +234,9 @@ h1 {
 {{-- <script src="/template_admin/admin/dist/js/pages/dashboard.js"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js" integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <!-- Images loader -->
-<script src="/template_admin/imageloader/js/jquery.imagesloader-1.0.1.js"></script>
-
+<script type="text/javascript" src="/template_admin/imageloader/js/image-uploader.min.js"></script>
+  
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
 @yield('scripts')
 

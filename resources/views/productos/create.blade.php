@@ -32,8 +32,9 @@
             <!-- /.card-header -->
             <!-- form start -->
 
-            <form id="frm" method = "POST" action= "{{ route('productos.store') }}" enctype="multipart/form-data" >
-                {{method_field('post')}}
+            <!-- <form  name="form-example-1" id="form-example-1" method = "POST"enctype="multipart/form-data" > -->
+            <form method="POST" name="form-example-1" id="form-example-1"  action= "{{ route('productos.store') }}"  enctype="multipart/form-data">
+            {{method_field('post')}}
                 @csrf
                 @include('productos.form.form')
 
@@ -52,67 +53,16 @@
 
 @section('scripts')
   <script src="/js/productoCategoria.js"></script>
-  <script type="text/javascript">
+ 
+  <script>
+    $(document).ready(function(){
 
-// Ready
-$(document).ready(function () {
+    $('.input-images-1').imageUploader();
 
-  //Image loader var to use when you need a function from object
-  var auctionImages = null;
+    
 
-  // Create image loader plugin
-  var imagesloader = $('[data-type=imagesloader]').imagesloader({
-    maxFiles: 5
-    , minSelect: 1
-    , imagesToLoad: auctionImages
-  });
-
-  //Form
-  $frm = $('#frm');
-
-  // Form submit
-  $frm.submit(function (e) {
-
-    var $form = $(this);
-
-    var files = imagesloader.data('format.imagesloader').AttachmentArray;
-
-    var il = imagesloader.data('format.imagesloader');
-   
-    console.log('file: '+ files);
-
-    if (il.CheckValidity())
-      // alert('Upload ' + files.length + ' files');        
-
-    e.preventDefault();
-    e.stopPropagation();
-  });
-
-//     var arrayFiles =  [];
-//   $('input#files').on('change', function() {
-
-//   var filenames = Array.from(this.files).map(function(f) {
-//     return arrayFiles.push(f.name;
-//   });
-//   console.log('Mark',arrayFiles);
-// })
-});
-
-</script>
-<script type="text/javascript">
-
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-36251023-1']);
-_gaq.push(['_setDomainName', 'jqueryscript.net']);
-_gaq.push(['_trackPageview']);
-
-(function() {
-var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
-
-</script>
+    });
+  </script>
 
 
 @stop

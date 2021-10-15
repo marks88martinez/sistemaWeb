@@ -49,4 +49,12 @@
 
 @section('scripts')
   <script src="/js/productos.js"></script>
+  <script>
+    $(document).ready(function(){
+
+    $('.input-images-1').imageUploader();
+
+    });
+  </script>
 @stop
+

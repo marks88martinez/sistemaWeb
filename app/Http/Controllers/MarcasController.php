@@ -36,17 +36,26 @@ class MarcasController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'file'=>'required|image|max:2048'
-        ]);
-        //php artisan storage:link   /// crea acceso directo a la carpeta public de las imagenes a storage
+        if ( $request->file('file')) {
+            # code...
+       
+            $request->validate([
+                'file'=>'required|image|max:2048'
+            ]);
+            //php artisan storage:link   /// crea acceso directo a la carpeta public de las imagenes a storage
 
-        $imagenes = $request->file('file')->store('public/marcas');
-        $url = Storage::url($imagenes);
-         Marca::create([
-            'name'=> $request->name,
-            'path_image'=> $url
-        ]);
+            $imagenes = $request->file('file')->store('public/marcas');
+            $url = Storage::url($imagenes);
+            Marca::create([
+                'name'=> $request->name,
+                'path_image'=> $url
+            ]);
+        }else{
+            Marca::create([
+                'name'=> $request->name
+            ]);
+
+        }
         return redirect('marcas');
 
     }

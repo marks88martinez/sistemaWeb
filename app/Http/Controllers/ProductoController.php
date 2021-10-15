@@ -8,6 +8,7 @@ use App\Models\Categoria;
 use App\Models\ProductoCategoria;
 use App\Models\ProductoImagen;
 use App\Models\ProductoImagenes;
+use App\Models\Marca;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -25,11 +26,11 @@ class ProductoController extends Controller
 
         if ( $request->search) {
             $categorias = Categoria::all();
-            $productos = Producto::where('name','like','%'.$search.'%')->paginate(20);
+            $productos = Producto::where('name','like','%'.$search.'%')->orderBy('id','desc')->paginate(20);
         }else{
                // $categorias = Categoria::whereNull('categorias_id')->get();
             $categorias = Categoria::all();
-            $productos = Producto::paginate(20);
+            $productos = Producto::orderBy('id','desc')->paginate(20);
         }
     return view('productos.index',compact('productos','categorias'));
 
@@ -43,15 +44,16 @@ class ProductoController extends Controller
      */
     public function create()
     {
+        $marcas = Marca::all();
         $subcategorias = Categoria::WhereNotNull('categorias_id')->get();
         $categorias = Categoria::whereNull('categorias_id')->get();
-        return view('productos.create', compact('categorias','subcategorias'));
+        return view('productos.create', compact('categorias','subcategorias','marcas'));
     }
 
 
     public function store(Request $request)
     {
-        // return $request->file('files');
+        // return $request->file('images');
          dd($request);
 
         $now = now();
@@ -90,8 +92,8 @@ class ProductoController extends Controller
         //     'file'=>'image|max:2048'
         // ]);
 
-        if ($request->file) {
-            $images = $request->file('file');
+        if ($request->images) {
+            $images = $request->file('images');
 
             foreach ($images as $f) {
 
@@ -198,8 +200,8 @@ class ProductoController extends Controller
 
 
 
-        if ($request->file) {
-            $images = $request->file('file');
+        if ($request->images) {
+            $images = $request->file('images');
 
             foreach ($images as $f) {
 

@@ -8,9 +8,7 @@
                 <div class="form-group">
                   <label for="exampleInputEmail1">File</label>
                   <input type="file" class="form-control" name="file" accept="images/*"  >
-                  @error('file')
-                    <small class="text-danger">{{ $message }}</small>
-                  @enderror
+                 
                 </div>
 
           <div class="form-group">
@@ -49,10 +47,8 @@
 
                 <div class="form-group">
                   <label for="exampleInputEmail1">File</label>
-                  <input type="file" class="form-control" name="file" accept="images/*"  multiple >
-                  @error('file')
-                    <small class="text-danger">{{ $message }}</small>
-                  @enderror
+                  <input type="file" class="form-control" name="file" accept="images/*"   >
+                 
                 </div>
 
                 {{-- <div class="form-group">
