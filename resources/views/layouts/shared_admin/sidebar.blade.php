@@ -56,112 +56,61 @@
 
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="/users" class="nav-link {{ Request::is('users*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Users
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/users" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>lista de usuarios</p>
-                </a>
-              </li>
-
-            </ul>
+           
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="/banners" class="nav-link {{ Request::is('banners*') ? 'active' : '' }}">
               <i class="nav-icon far fa-image"></i>
               <p>
                 Banners
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/banners" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>lista de Banners</p>
-                </a>
-              </li>
-
-            </ul>
+           
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="/marcas" class="nav-link {{ Request::is('marcas*') ? 'active' : '' }}">
               <i class="nav-icon far fa-plus-square"></i>
               <p>
                 Marcas
-                <i class="right fas fa-angle-left"></i>
+                
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/marcas" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>lista de Marcas</p>
-                </a>
-              </li>
-
-            </ul>
+            
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="/categorias" class="nav-link  {{ Request::is('categorias*') ? 'active' : '' }} ">
               <i class="nav-icon fas fa-folder"></i>
               <p>
                 Categorias
-                <i class="right fas fa-angle-left"></i>
+               
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/categorias" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>lista de Categorias</p>
-                </a>
-              </li>
-
-            </ul>
+            
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item ">
+            <a href="/subcategorias" class="nav-link {{ Request::is('subcategorias*') ? 'active' : '' }} ">
               <i class="nav-icon far fa-folder-open"></i>
               <p>
                 SubCategorias
-                <i class="right fas fa-angle-left"></i>
+               
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/subcategorias" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>lista de SubCategorias</p>
-                </a>
-              </li>
-
-            </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="/productos" class="nav-link {{ Request::is('productos*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-store"></i>
               <p>
                 Productos
-                <i class="right fas fa-angle-left"></i>
+               
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/productos" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>lista de Productos</p>
-                </a>
-              </li>
-
-            </ul>
+            
           </li>
           <!-- <li class="nav-item">
             <a href="#" class="nav-link">
@@ -199,8 +148,8 @@
 
             </ul>
           </li> -->
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item ">
+            <a href="#" class="nav-link  ">
             <i class="fas fa-cogs nav-icon"></i> 
               <p>
                  Setup
