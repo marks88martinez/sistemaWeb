@@ -19,8 +19,9 @@ class Producto extends Model
         'description',
         'slug',
         'precio',
+        'marca_id',
         'precio_oferta',
-        'codigo_prod',
+        'sku',
         'destacado',
         'status',
     ];

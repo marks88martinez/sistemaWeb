@@ -24,6 +24,7 @@ class Categoria extends Model
     //     return $this->belongsTo(Categoria::class, 'categorias_id');
     // }
   
+  
     public function children(){
         return $this->hasMany(Categoria::class, 'categorias_id');
     }

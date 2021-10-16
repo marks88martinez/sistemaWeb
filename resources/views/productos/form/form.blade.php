@@ -33,7 +33,7 @@
 
 
                                     <li class="">
-                                      <input type="checkbox" name="Subcategorias_id[]" value="{{ $cat->id }} "{{ in_array($cat->id, $proCat)? 'checked' : '' }}>
+                                      <input type="checkbox" name="categorias_id[]" value="{{ $cat->id }} "{{ in_array($cat->id, $proCat)? 'checked' : '' }}>
                                       <label>{{ $cat->name }}</label>
                                     </li>
                                     @endforeach
@@ -49,6 +49,20 @@
 
                     </div>
 
+                  </div>
+
+                  <div class="col-6">
+                  <div class="form-group">
+                        <label>Marcas</label>
+                        <select class="form-control" name="marca">
+                          <option value=""></option>
+                          @foreach($marcas  as $marca)
+                          <option value="{{$marca->id}}" {{ $producto->marca_id == $marca->id ? 'selected ' : ' ' }}>{{$marca->name}}</option>
+                          @endforeach
+                        
+                      
+                        </select>
+                      </div>
                   </div>
                  
                 </div>
@@ -81,7 +95,7 @@
                         <div class="form-group">
                           <label for="exampleInputEmail1">SKU</label>
                           <div class="form-group">
-                          <input type="text" class="form-control" name="codigo_prod" value="{{ $producto->codigo_prod }}"  placeholder="SKU" >
+                          <input type="text" class="form-control" name="sku" value="{{ $producto->sku }}"  placeholder="SKU" >
                         </div>
                       </div>
                   </div>
@@ -185,6 +199,7 @@
 
                   <textarea name="description"  class="form-control" id="" cols="10" rows="4"></textarea>
                 </div>
+              
 
 
                 <!-- <div class="form-group">
@@ -228,7 +243,23 @@
                         <!-- ////////////////////////// -->
 
                     </div>
+                    
 
+                  </div>
+
+             
+                  <div class="col-6">
+                  <div class="form-group">
+                        <label>Marcas</label>
+                        <select class="form-control" name="marca">
+                          <option value=""></option>
+                          @foreach($marcas  as $marca)
+                          <option value="{{$marca->id}}">{{$marca->name}}</option>
+                          @endforeach
+                        
+                      
+                        </select>
+                      </div>
                   </div>
                 </div>
 
@@ -242,13 +273,13 @@
                   <div class="col-6">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Precio </label>
-                      <input type="text" class="form-control" name="precio" value=""  placeholder="precio" >
+                      <input type="text" class="form-control" name="precio" value=""  placeholder="$ 0,00" >
                     </div>  
                   </div>
                   <div class="col-6">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Precio Oferta</label>
-                      <input type="text" class="form-control" name="precio_oferta" value=""  placeholder="precio_oferta" >
+                      <input type="text" class="form-control" name="precio_oferta" value=""  placeholder="$ 0,00" >
                     </div> 
                   </div>
                 
@@ -259,7 +290,7 @@
                         <div class="form-group">
                           <label for="exampleInputEmail1">SKU</label>
                           <div class="form-group">
-                          <input type="text" class="form-control" name="codigo_prod" value=""  placeholder="SKU" >
+                          <input type="text" class="form-control" name="sku" value=""  placeholder="SKU" >
                         </div>
                       </div>
                   </div>

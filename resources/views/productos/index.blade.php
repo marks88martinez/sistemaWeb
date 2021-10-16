@@ -72,7 +72,7 @@
 
                         <td>{{ $producto->precio }}</td>
                         <td>{{ $producto->precio_oferta }}</td>
-                        <td>{{ $producto->codigo_prod }}</td>
+                        <td>{{ $producto->sku }}</td>
                         <td>{{ $producto->destacado }}</td>
                         <td>{{ $producto->status }}</td>
                         <td>{{ $producto->created_at }}</td>

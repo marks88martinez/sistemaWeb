@@ -54,7 +54,7 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         // return $request->file('images');
-        //  dd($request);
+         //dd($request);
 
         $now = now();
         $producto =  Producto::create([
@@ -62,6 +62,7 @@ class ProductoController extends Controller
             'description'=> $request->description,
             'slug'=> Str::slug($request->name,'-').'_'.rand(),
             'precio'=> $request->precio,
+            'marca_id'=> $request->marca,
             'precio_oferta'=> $request->precio_oferta,
             'sku'=> $request->codigo_prod,
             'destacado'=> $request->input('destacado') ==  0 ? 'Active': 'Inactive',
@@ -70,12 +71,15 @@ class ProductoController extends Controller
         ]);
 
             // ## Producto Categorias TB
-        foreach ($request->categorias_id as $cat) {
-            ProductoCategoria::create([
-                'producto_id'=> $producto->id,
-                'categoria_id'=> $cat,
-            ]);
-        }
+            if ($request->categorias_id ) {
+                foreach ($request->categorias_id as $cat) {
+                    ProductoCategoria::create([
+                        'producto_id'=> $producto->id,
+                        'categoria_id'=> $cat,
+                    ]);
+                }
+            }
+       
         if ($request->Subcategorias_id) {
             foreach ($request->Subcategorias_id as $cat) {
                 ProductoCategoria::create([
@@ -137,6 +141,7 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
+        $marcas = Marca::all();
         $producto = Producto::find($id);
 
         $subcategorias = Categoria::WhereNotNull('categorias_id')->get();
@@ -156,7 +161,7 @@ class ProductoController extends Controller
         // ->first();
 
         // return $proCat;
-       return view('productos.edit',compact('producto','categorias','subcategorias','proCat'));
+       return view('productos.edit',compact('producto','categorias','subcategorias','proCat','marcas'));
     }
     public function imagenTable($id)
     {
@@ -181,21 +186,35 @@ class ProductoController extends Controller
     }
     public function update(Request $request, $id)
     {
-        // dd($request->status);
+        // dd($request);
         $producto = Producto::find($id);
-        $producto->fill([
+        try {
+            //code...
+        
+                $producto->fill([
 
-              'name'=> $request->name,
-              'description'=> $request->description,
-            //   'slug'=> Str::slug($request->name,'-').'_'.rand(),
-              'precio'=> $request->precio,
-              'precio_oferta'=> $request->precio_oferta,
-              'sku'=> $request->codigo_prod,
+                    'name'=> $request->name,
+                    'description'=> $request->description,
+                    //   'slug'=> Str::slug($request->name,'-').'_'.rand(),
+                    'precio'=> $request->precio,
+                    'marca_id'=> $request->marca,
+                    'precio_oferta'=> $request->precio_oferta,
+                    'sku'=> $request->sku,
 
-              'destacado'=> $request->has('destacado')  ? 'Active': 'Inactive',
-              'status'=> $request->has('status') ? 'Active' : 'Inactive'
+                    'destacado'=> $request->has('destacado')  ? 'Active': 'Inactive',
+                    'status'=> $request->has('status') ? 'Active' : 'Inactive'
 
-        ]);
+                ]);
+
+               
+                 
+                 $producto->categorias()->sync($request->categorias_id);
+                
+            } catch (\Throwable $th) {
+                //throw $th;
+            }
+        
+           
 
 
 
