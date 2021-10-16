@@ -19,6 +19,7 @@
 
                 <div class="form-group">
                 {{-- //////////////////// --}}
+             
                 @isset($subcategoria->path_image)
                 <div class="card-footer bg-white">
                     <ul class="mailbox-attachments d-flex align-items-stretch clearfix">

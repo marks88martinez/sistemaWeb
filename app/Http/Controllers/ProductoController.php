@@ -54,7 +54,7 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         // return $request->file('images');
-         dd($request);
+        //  dd($request);
 
         $now = now();
         $producto =  Producto::create([

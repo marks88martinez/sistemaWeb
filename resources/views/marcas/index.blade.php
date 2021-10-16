@@ -36,7 +36,7 @@
 
             <div class="card-tools">
 
-                <div class="input-group input-group-sm" style="width: 150px;">
+                <div class="input-group input-group-sm">
                  {{-- <input type="text" name="table_search" class="form-control float-right" placeholder="Search"> --}}
 
                   <div class="input-group-append">
@@ -48,7 +48,7 @@
               </div>
             </div>
             <!-- /.card-header -->
-            <div class="card-body table-responsive p-0" style="height: 300px;">
+            <div class="card-body table-responsive p-0" >
               <table class="table table-head-fixed text-nowrap">
                 <thead>
                   <tr>
@@ -56,10 +56,9 @@
                     <th>Nome</th>
                     <th>image</th>
 
-                    <th>url</th>
+                    
                     <th>Date</th>
 
-                    <th></th>
                   </tr>
                 </thead>
                 <tbody>

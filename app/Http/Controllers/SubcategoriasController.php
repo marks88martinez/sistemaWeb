@@ -39,7 +39,7 @@ class SubcategoriasController extends Controller
     public function store(Request $request)
     {
        
-        $imagenes = '';
+       
         if ($request->file) {
 
             $request->validate([
@@ -47,13 +47,20 @@ class SubcategoriasController extends Controller
             ]);
             //php artisan storage:link   /// crea acceso directo a la carpeta public de las imagenes a storage
             $imagenes = $request->file('file')->store('public/subcategorias');
+            $url =  Storage::url($imagenes);
+            Categoria::create([
+                'name'=> $request->name,
+                'categorias_id'=> $request->categorias_id,
+                'path_image'=> $url,
+            ]);
+        }else{
+           
+            Categoria::create([
+                'name'=> $request->name,
+                'categorias_id'=> $request->categorias_id,
+            ]);
         }
-        $url = $imagenes ? Storage::url($imagenes) : '' ;
-        Categoria::create([
-            'name'=> $request->name,
-            'categorias_id'=> $request->categorias_id,
-            'path_image'=> $url,
-        ]);
+      
 
 
         return redirect('subcategorias');

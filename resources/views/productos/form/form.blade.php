@@ -50,36 +50,7 @@
                     </div>
 
                   </div>
-                  <div class="col-sm-3">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Destacado </label>
-                        <div class="form-group">
-                          <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                              <!-- <input type="checkbox" class="custom-control-input"  name="destacado" id="destacado" value="0"  {{ $producto->destacado === 'Active' ? 'checked':'' }}  > -->
-                              <!-- <label class="custom-control-label" for="destacado"></label> -->
-                              <!-- {{ $producto->destacado }} -->
-                              <input type="checkbox"  data-toggle="toggle" name="destacado" value="0"  {{ $producto->destacado === 'Active' ? 'checked':''}}>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                  <div class="col-sm-3">
-                      <div class="form-group">
-                      <label for="exampleInputEmail1">Status</label>
-                      <div class="form-group">
-                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                          <!-- <input type="checkbox" class="custom-control-input"  name="status" id="status" value="0"  {{ $producto->status === 'Active' ? 'checked':'' }} >
-                          <label class="custom-control-label" for="status"></label>
-                          {{ $producto->status }} -->
-                          <input type="checkbox"  data-toggle="toggle" name="status" value="0"  {{ $producto->status === 'Active' ? 'checked':''}}>
-
-                        </div>
-                      </div>
-                    </div>
-
-
-                  </div>
+                 
                 </div>
 
 
@@ -88,18 +59,54 @@
             <div class="col-sm-6">
 
 
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Precio</label>
-                  <input type="text" class="form-control" name="precio" value="{{ $producto->precio }}""  placeholder="precio" >
+            <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Precio </label>
+                      <input type="text" class="form-control" name="precio" value="{{ $producto->precio }}"  placeholder="precio" >
+                    </div>  
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Precio Oferta</label>
+                      <input type="text" class="form-control" name="precio_oferta" value="{{ $producto->precio_oferta }}"  placeholder="precio_oferta" >
+                    </div> 
+                  </div>
+                
                 </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Precio Oferta</label>
-                  <input type="text" class="form-control" name="precio_oferta" value="{{ $producto->precio_oferta }}"  placeholder="precio_oferta" >
+             
+
+                <div class="row">
+                  <div class="col-sm-4">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">SKU</label>
+                          <div class="form-group">
+                          <input type="text" class="form-control" name="codigo_prod" value="{{ $producto->codigo_prod }}"  placeholder="SKU" >
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-4">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Destacado</label>
+                          <div class="form-group">
+                            <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                            <input type="checkbox"  data-toggle="toggle"   data-on="Enabled" data-off="Disabled" name="destacado" value="0" {{ $producto->destacado === 'Active' ? 'checked':''}} >
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <label>Status</label>
+                        <div class="form-group">
+                          <div class="form-group">
+                            <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                            <input type="checkbox"  data-toggle="toggle"  data-on="Enabled" data-off="Disabled"name="status" value="0" {{ $producto->status === 'Active' ? 'checked':''}}>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
                 </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Codigo Producto</label>
-                  <input type="text" class="form-control" name="codigo_prod" value="{{ $producto->codigo_prod }}"  placeholder="Codigo Producto" >
-                </div>
+            <!-- //////////////////////////// -->
                 
                 <div class="form-group">
                     <!-- ////////////imageloader////////////// -->
@@ -137,7 +144,7 @@
                                 <tr>
 
                                   <td>
-                                    {{$prod->id}}
+                                  
                                       <img src=" {{ $prod->path_image }}"  style="width: 80px">
 
                                   </td>
@@ -223,53 +230,67 @@
                     </div>
 
                   </div>
-                  <div class="col-sm-3">
-                      <div class="form-group">
-                      <label for="exampleInputEmail1">Destacado</label>
-                      <div class="form-group">
-                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                        <input type="checkbox" checked data-toggle="toggle" name="destacado" value="0" checked="false">
-                        <!-- <input type="checkbox" class="custom-control-input"  name="destacado" id="destacado" value="0" checked>
-                          <label class="custom-control-label" for="destacado"></label> -->
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                  <div class="col-sm-3">
-                      <div class="form-group">
-                      <label for="exampleInputEmail1">status</label>
-                      <div class="form-group">
-                        <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                        <input type="checkbox"  checked data-toggle="toggle" name="destacado" checked >
-                        <!-- <input type="checkbox" class="custom-control-input"  name="status" id="status" value="0" checked>
-                          <label class="custom-control-label" for="status"></label> -->
-                        </div>
-                      </div>
-                    </div>
-
-
-                  </div>
                 </div>
 
 
 
               </div>
-              <div class="col-sm-6">
+          <div class="col-sm-6">
+             
+                
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Precio </label>
+                      <input type="text" class="form-control" name="precio" value=""  placeholder="precio" >
+                    </div>  
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Precio Oferta</label>
+                      <input type="text" class="form-control" name="precio_oferta" value=""  placeholder="precio_oferta" >
+                    </div> 
+                  </div>
+                
+                </div>
 
+                <div class="row">
+                  <div class="col-sm-4">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">SKU</label>
+                          <div class="form-group">
+                          <input type="text" class="form-control" name="codigo_prod" value=""  placeholder="SKU" >
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-4">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Destacado</label>
+                          <div class="form-group">
+                            <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                            <input type="checkbox" checked data-toggle="toggle"   data-on="Enabled" data-off="Disabled" name="destacado" value="0" checked="false">
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <label>Status</label>
+                        <div class="form-group">
+                          <div class="form-group">
+                            <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                            <input type="checkbox" checked data-toggle="toggle"  data-on="Enabled" data-off="Disabled"name="status" value="0" checked="false">
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  
 
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Precio</label>
-                  <input type="text" class="form-control" name="precio" value=""  placeholder="precio" >
                 </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Precio Oferta</label>
-                  <input type="text" class="form-control" name="precio_oferta" value=""  placeholder="precio_oferta" >
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Codigo Producto</label>
-                  <input type="text" class="form-control" name="codigo_prod" value=""  placeholder="Codigo Producto" >
-                </div>
+              
+
+               
+               
+               
 
                 <!-- <div class="form-group">
                     <label for="exampleInputEmail1">File</label>
