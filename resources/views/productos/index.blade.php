@@ -1,7 +1,32 @@
 @extends('layouts.dashboard')
 
+
 @section('content')
+
+
+
+
 <div class="content-header">
+@if(session()->has('success'))
+  <div class="container-fluid mt-4 animate__animated animate__bounceIn animate__delay-2s form_message ">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>{{ session('success') }}</strong> 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div> 
+  </div>
+ @endif
+@if(session()->has('danger'))
+  <div class="container-fluid mt-4 animate__animated animate__bounceIn animate__delay-2s form_message ">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>{{ session('danger') }}</strong> 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div> 
+  </div>
+ @endif
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
@@ -135,4 +160,10 @@
 
 
 
+
 @endsection
+@section('scripts')
+  <script>
+    $('.form_message').delay(5000).fadeToggle( "slow", "linear" );
+  </script>
+@stop

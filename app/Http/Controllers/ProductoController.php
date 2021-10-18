@@ -117,7 +117,7 @@ class ProductoController extends Controller
         }
 
 
-        return redirect('productos');
+        return redirect('productos')->with('message','Producto Registrado Correctamente');
 
     }
 
@@ -244,8 +244,8 @@ class ProductoController extends Controller
 
 
         $producto->save();
-        // return Redirect('/productos')->with('success','Producto Actualizado con sucesso');
-        return back();
+        return Redirect('/productos')->with('success','Producto Actualizado');
+        // return back()->with('message','Producto Registrado Correctamente');
     }
 
 
@@ -253,7 +253,7 @@ class ProductoController extends Controller
     {
         $producto = Producto::find($id);
         $producto->delete();
-        return Redirect('/productos')->with('success','Producto Eliminada con sucesso');
+        return Redirect('/productos')->with('danger','Producto Eliminada con sucesso');
 
     }
 }
