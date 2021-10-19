@@ -11,6 +11,8 @@ use App\Models\ProductoImagenes;
 use App\Models\Marca;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
+
 
 
 
@@ -64,7 +66,7 @@ class ProductoController extends Controller
             'precio'=> $request->precio,
             'marca_id'=> $request->marca,
             'precio_oferta'=> $request->precio_oferta,
-            'sku'=> $request->codigo_prod,
+            'sku'=> $request->sku,
             'destacado'=> $request->input('destacado') ==  0 ? 'Active': 'Inactive',
             'status'=> $request->input('status') ==  0 ? 'Active' : 'Inactive'
 
@@ -79,7 +81,7 @@ class ProductoController extends Controller
                     ]);
                 }
             }
-       
+
         if ($request->Subcategorias_id) {
             foreach ($request->Subcategorias_id as $cat) {
                 ProductoCategoria::create([
@@ -117,7 +119,7 @@ class ProductoController extends Controller
         }
 
 
-        return redirect('productos')->with('message','Producto Registrado Correctamente');
+        return redirect('productos')->with('success','Producto Registrado Correctamente');
 
     }
 
@@ -175,6 +177,11 @@ class ProductoController extends Controller
 
         $idProducto = productoImagen::select('producto_id')->where('imagen_id',$id)->first()->toArray();
         $imagen = productoImagenes::find($id);
+        // foreach ($imagen as $prodImg) {
+            if (File::exists(public_path( $imagen->path_image))) {
+                File::delete(public_path( $imagen->path_image));
+            }
+        // }
         $imagen->delete();
         return $idProducto;
 
@@ -190,7 +197,7 @@ class ProductoController extends Controller
         $producto = Producto::find($id);
         try {
             //code...
-        
+
                 $producto->fill([
 
                     'name'=> $request->name,
@@ -206,15 +213,15 @@ class ProductoController extends Controller
 
                 ]);
 
-               
-                 
+
+
                  $producto->categorias()->sync($request->categorias_id);
-                
+
             } catch (\Throwable $th) {
                 //throw $th;
             }
-        
-           
+
+
 
 
 
@@ -244,15 +251,22 @@ class ProductoController extends Controller
 
 
         $producto->save();
-        return Redirect('/productos')->with('success','Producto Actualizado');
-        // return back()->with('message','Producto Registrado Correctamente');
+        // return Redirect('/productos')->with('success','Producto Actualizado');
+        return back()->with('success','Producto Registrado Correctamente');
     }
 
 
     public function destroy($id)
     {
         $producto = Producto::find($id);
+
+        foreach ($producto->productoImagenes as $prodImg) {
+            if (File::exists(public_path( $prodImg->path_image))) {
+                File::delete(public_path( $prodImg->path_image));
+            }
+        }
         $producto->delete();
+
         return Redirect('/productos')->with('danger','Producto Eliminada con sucesso');
 
     }

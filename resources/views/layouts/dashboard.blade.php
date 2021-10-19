@@ -35,9 +35,9 @@
   <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
- 
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
- 
+
  <style>
 
 * {
@@ -178,6 +178,26 @@ h1 {
     <!-- Content Header (Page header) -->
 
     <!-- /.content-header -->
+    @if(session()->has('success'))
+  <div class="container-fluid mt-4 animate__animated animate__bounceIn animate__delay-1s form_message ">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>{{ session('success') }}</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+ @endif
+@if(session()->has('danger'))
+  <div class="container-fluid mt-4 animate__animated animate__bounceIn animate__delay-1ss form_message ">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>{{ session('danger') }}</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+ @endif
 
     <!-- Main content -->
     @yield('content')
@@ -237,7 +257,7 @@ h1 {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js" integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript" src="/template_admin/imageloader/js/image-uploader.min.js"></script>
-  
+
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
 @yield('scripts')
@@ -275,6 +295,9 @@ $(document).on('click', 'button', function(e) {
     default:
   }
 });
+</script>
+<script>
+    $('.form_message').delay(5000).fadeToggle( "slow", "linear" );
 </script>
 
 

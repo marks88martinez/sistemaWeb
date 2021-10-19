@@ -14,7 +14,7 @@ class UsersController extends Controller
 
     public function index()
     {
-        $users =  User::where('id','<>',1)->whereNull('u.deleted_at');
+        $users =  User::where('id','<>',1)->get();
         return view('users.index', compact('users'));
 
     }

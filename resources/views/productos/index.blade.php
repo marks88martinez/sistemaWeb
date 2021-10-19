@@ -7,26 +7,7 @@
 
 
 <div class="content-header">
-@if(session()->has('success'))
-  <div class="container-fluid mt-4 animate__animated animate__bounceIn animate__delay-2s form_message ">
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-      <strong>{{ session('success') }}</strong> 
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div> 
-  </div>
- @endif
-@if(session()->has('danger'))
-  <div class="container-fluid mt-4 animate__animated animate__bounceIn animate__delay-2s form_message ">
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <strong>{{ session('danger') }}</strong> 
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div> 
-  </div>
- @endif
+
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
@@ -104,6 +85,8 @@
 
 
 
+
+
                         <td>
                             @if ($producto->productoImagen->count())
 
@@ -163,7 +146,42 @@
 
 @endsection
 @section('scripts')
-  <script>
-    $('.form_message').delay(5000).fadeToggle( "slow", "linear" );
-  </script>
+
+   <script>
+   function edad() {
+       //fechaNow = new Date();
+       fecha =  $( "#test" ).val()
+       fechaM = new Date(fecha)
+
+       //var nowYear = fechaNow.getFullYear();
+       //var nowMonth = fechaNow.getMonth();
+       //var nowDay = fechaNow.getDate();
+
+       var postYear = fechaM.getFullYear();
+       var postMonth = fechaM.getMonth();
+       var postDay = fechaM.getDate();
+       //var age = nowYear - postYear;
+       var age = 18;
+       //console.log(postYear);
+       //console.log(postMonth);
+       //console.log(postDay);
+
+       var mydate = new Date();
+       mydate.setFullYear(postYear, postMonth, postDay);
+
+       var currdate = new Date();
+       currdate.setFullYear(currdate.getFullYear() - age);
+       if(currdate < mydate)
+        {
+            alert('menor 18 years of age.');
+        }else{
+            alert('mayor de 18')
+        }
+
+
+   }
+   </script>
+
+
+
 @stop

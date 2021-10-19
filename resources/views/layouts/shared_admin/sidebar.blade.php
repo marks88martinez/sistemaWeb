@@ -35,7 +35,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item ">
+          {{-- <li class="nav-item ">
             <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -52,7 +52,7 @@
               </li>
 
             </ul>
-          </li>
+          </li> --}}
 
 
           <li class="nav-item">
@@ -62,7 +62,7 @@
                 Users
               </p>
             </a>
-           
+
           </li>
           <li class="nav-item">
             <a href="/banners" class="nav-link {{ Request::is('banners*') ? 'active' : '' }}">
@@ -71,34 +71,34 @@
                 Banners
               </p>
             </a>
-           
+
           </li>
           <li class="nav-item">
             <a href="/marcas" class="nav-link {{ Request::is('marcas*') ? 'active' : '' }}">
               <i class="nav-icon far fa-plus-square"></i>
               <p>
                 Marcas
-                
+
               </p>
             </a>
-            
+
           </li>
           <li class="nav-item">
             <a href="/categorias" class="nav-link  {{ Request::is('categorias*') ? 'active' : '' }} ">
               <i class="nav-icon fas fa-folder"></i>
               <p>
                 Categorias
-               
+
               </p>
             </a>
-            
+
           </li>
           <li class="nav-item ">
             <a href="/subcategorias" class="nav-link {{ Request::is('subcategorias*') ? 'active' : '' }} ">
               <i class="nav-icon far fa-folder-open"></i>
               <p>
                 SubCategorias
-               
+
               </p>
             </a>
           </li>
@@ -107,10 +107,10 @@
               <i class="nav-icon fas fa-store"></i>
               <p>
                 Productos
-               
+
               </p>
             </a>
-            
+
           </li>
           <!-- <li class="nav-item">
             <a href="#" class="nav-link">
@@ -150,7 +150,7 @@
           </li> -->
           <li class="nav-item ">
             <a href="#" class="nav-link  ">
-            <i class="fas fa-cogs nav-icon"></i> 
+            <i class="fas fa-cogs nav-icon"></i>
               <p>
                  Setup
 
