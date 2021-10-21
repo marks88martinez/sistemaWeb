@@ -35,7 +35,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Productos</h3>
+              <h3 class="card-title" id="cambio">Productos</h3>
 
               <div class="card-tools">
                   <form action="/productos" method="GET">
@@ -54,7 +54,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body table-responsive p-0" >
-              <table class="table table-head-fixed text-nowrap">
+              <table class="table table-head-fixed text-nowrap" >
                 <thead>
                   <tr>
                     <th>ID</th>
@@ -82,6 +82,10 @@
                         <td>{{ $producto->destacado }}</td>
                         <td>{{ $producto->status }}</td>
                         <td>{{ $producto->created_at }}</td>
+                        <td>
+                            <input type="date" id="test" class="form-control">
+                            <button class="btn btn-primary" onclick="edad()"> post </button>
+                        </td>
 
 
 
@@ -147,40 +151,37 @@
 @endsection
 @section('scripts')
 
-   <script>
-   function edad() {
-       //fechaNow = new Date();
-       fecha =  $( "#test" ).val()
-       fechaM = new Date(fecha)
 
-       //var nowYear = fechaNow.getFullYear();
-       //var nowMonth = fechaNow.getMonth();
-       //var nowDay = fechaNow.getDate();
-
-       var postYear = fechaM.getFullYear();
-       var postMonth = fechaM.getMonth();
-       var postDay = fechaM.getDate();
-       //var age = nowYear - postYear;
-       var age = 18;
-       //console.log(postYear);
-       //console.log(postMonth);
-       //console.log(postDay);
-
-       var mydate = new Date();
-       mydate.setFullYear(postYear, postMonth, postDay);
-
-       var currdate = new Date();
-       currdate.setFullYear(currdate.getFullYear() - age);
-       if(currdate < mydate)
-        {
-            alert('menor 18 years of age.');
-        }else{
-            alert('mayor de 18')
-        }
+<script>
+    function edad() {
+        fecha =  $( "#test" ).val()
+        fechaM = new Date(fecha)
 
 
-   }
-   </script>
+        var postYear = fechaM.getFullYear();
+        var postMonth = fechaM.getMonth();
+        var postDay = fechaM.getDate();
+        var age = 18;
+
+        var mydate = new Date();
+        mydate.setFullYear(postYear, postMonth, postDay);
+
+        var currdate = new Date();
+        currdate.setFullYear(currdate.getFullYear() - age);
+        if(currdate < mydate)
+         {
+             $('#cambio').replaceWith('<div id="cambio">menor 18 ......</div>')
+             //alert('okoaksodkasod')
+
+            }else{
+                $('#cambio').replaceWith('<div id="cambio">mayor 18 ....</div>')
+            // alert('okoaksodkasod 18')
+
+         }
+
+
+    }
+    </script>
 
 
 
